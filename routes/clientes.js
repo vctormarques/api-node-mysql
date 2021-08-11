@@ -14,7 +14,7 @@ router.get('/', (req, res, next) => {
                         CO.tipo 
                     FROM cliente CLI 
                 LEFT OUTER JOIN contato CO 
-                    ON CO.pessoa = CLI.id `,
+                    ON CO.pessoa = CLI.id WHERE CLI.status = 'A'`,
             (error, result, field) => {
                 if (error) { return res.status(500).send({ error: error, response: null }) }
                 const response = {
@@ -76,33 +76,6 @@ router.post('/', (req, res, next) => {
     });
 });
 
-// router.post('/', (req, res, next) => {
-//     mysql.getConnection((error, conn) => {
-//         if (error) { return res.status(500).send({ error: error }) }
-//         conn.query(
-//             "INSERT INTO cliente (nome, tipo_pessoa, cnp) VALUES (?, ?, ?)",
-//             [req.body.nome, req.body.tipo_pessoa, req.body.cnp],
-//             (error, result, field) => {
-//                 conn.release();
-//                 if (error) { return res.status(500).send({ error: error, response: null }) }
-//                 const response = {
-//                     mensagem: 'Cliente inserido com sucesso',
-//                     clienteCadastrado: {
-//                         id: result.id,
-//                         nome: req.body.nome,
-//                         tipo_pessoa: req.body.tipo_pessoa,
-//                         cnp: req.body.cnp,
-//                         request: {
-//                             tipo: 'POST',
-//                             descricao: 'Insere um cliente'
-//                         }
-//                     }
-//                 }
-//                 return res.status(201).send(response);
-//             }
-//         )
-//     });
-// });
 
 router.get('/:id', (req, res, next) => {
     mysql.getConnection((error, conn) => {
@@ -155,10 +128,9 @@ router.patch('/', (req, res, next) => {
                     C.cnp = ?, 
                     CO.telefone = ?, 
                     CO.email = ?, 
-                    CO.tipo = ?, 
-                    C.status = ?, 
+                    CO.tipo = ?
                 where C.id = ? `,
-            [req.body.nome, req.body.tipo_pessoa, req.body.cnp, req.body.telefone, req.body.email, req.body.tipo, req.body.status, req.body.id],
+            [req.body.nome, req.body.tipo_pessoa, req.body.cnp, req.body.telefone, req.body.email, req.body.tipo, req.body.id],
             (error, result, field) => {
                 conn.release();
                 if (error) { return res.status(500).send({ error: error, response: null }) }
@@ -177,6 +149,34 @@ router.patch('/', (req, res, next) => {
                         request: {
                             tipo: 'PATCH',
                             descricao: 'Atualiza um cliente',
+                        }
+                    }
+                }
+                return res.status(202).send(response);
+            }
+        )
+    });
+});
+
+router.patch('/:id', (req, res, next) => {
+    mysql.getConnection((error, conn) => {
+        if (error) { return res.status(500).send({ error: error }) }
+        conn.query(
+            `UPDATE CLIENTE C 
+                SET 
+                    C.status = 'E' 
+                where C.id = ? `,
+            [req.params.id],
+            (error, result, field) => {
+                conn.release();
+                if (error) { return res.status(500).send({ error: error, response: null }) }
+                const response = {
+                    mensagem: 'Cliente inativado com sucesso',
+                    clienteAtualizado: {
+                        id: req.body.id,
+                        request: {
+                            tipo: 'UPDATE',
+                            descricao: 'Inativar um cliente',
                         }
                     }
                 }
