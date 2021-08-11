@@ -1,0 +1,132 @@
+<div id="modalCadastrar" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Cadastrar</h5>
+            </div>
+            <form action="" method="post" name="formCadastrar" id="formCadastrar">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="">Nome</label>
+                            <input type="text" class="form-control nome" name="nome">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">Tipo Pessoa</label>
+                            <select name="tipo_pessoa" id="tipo_pessoa" class="form-control tipoPessoa">
+                                <option value="">Selecione...</option>
+                                <option value="PF">PF</option>
+                                <option value="PJ">PJ</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">CNP</label>
+                            <input type="text" class="form-control cnp mascaraCNP" name="cnp">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="">Telefone</label>
+                            <input type="text" class="form-control telefone mascaraTelefone" name="telefone">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">Tipo Telefone</label>
+                            <select name="tipo" id="tipo" class="form-control tipo">
+                                <option value="">Selecione...</option>
+                                <option value="F">Fixo</option>
+                                <option value="C">Celular</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">E-mail</label>
+                            <input type="text" class="form-control email" name="email">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-success" id="btnCadastrar"
+                        name="btnCadastrar">Cadastrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div id="modalEditar" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Modal title</h5>
+            </div>
+            <form action="" name="formEditar" id="formEditar">
+                <input type="hidden" class="codExclusao" name="id" value="">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="">Nome</label>
+                            <input type="text" class="form-control nome" name="nome">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">Tipo Pessoa</label>
+                            <select name="tipo_pessoa" id="tipo_pessoa" class="form-control tipoPessoa">
+                                <option value="">Selecione...</option>
+                                <option value="PF">PF</option>
+                                <option value="PJ">PJ</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">CNP</label>
+                            <input type="text" class="form-control cnp mascaraCNP" name="cnp" id="cnp" readonly>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="">Telefone</label>
+                            <input type="text" class="form-control telefone mascaraTelefone" name="telefone"
+                                id="telefone">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">Tipo Telefone</label>
+                            <select name="tipo" id="tipo" class="form-control tipo">
+                                <option value="">Selecione...</option>
+                                <option value="F">Fixo</option>
+                                <option value="C">Celular</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">E-mail</label>
+                            <input type="text" class="form-control email" name="email">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-warning" id="btnEditar" name="btnEditar">Editar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div id="modalExcluir" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Modal title</h5>
+            </div>
+            <form action="" name="formExcluir" id="formExcluir">
+                <input type="hidden" class="codExclusao" name="id" value="">
+                <input type="hidden" class="status" name="E" value="">
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-danger" id="btnExcluir" name="btnExcluir">Excluir</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
